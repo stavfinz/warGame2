@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/marvel">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:paddingLeft="10dp"
+            >
+            <TextView
+                android:id="@+id/main_LBL_scorePlayer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="90dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="#d5e29f"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="Score" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/spiderman"
+
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="4">
+
+
+            <ImageView
+                android:id="@+id/main_PNG_leftCard"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="80dp"
+                app:srcCompat="@drawable/card_game" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/main_IMGBTN_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:layout_gravity="bottom"
+            android:background="@color/cardview_shadow_end_color"
+            android:src="@drawable/play"
+            ></ImageButton>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="4">>
+
+            <ImageView
+                android:id="@+id/main_PNG_rightCard"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="80dp"
+                app:srcCompat="@drawable/card_game" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:paddingRight="10dp"
+            >
+            <TextView
+                android:id="@+id/main_LBL_scorePlayer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="90dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="#d5e29f"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="Score" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                app:srcCompat="@drawable/batman"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
