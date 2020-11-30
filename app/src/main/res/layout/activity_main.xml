@@ -9,7 +9,7 @@
     android:background="@drawable/marvel">
 
     <ProgressBar
-        android:id="@+id/pBar"
+        android:id="@+id/main_BAR_prgsBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"

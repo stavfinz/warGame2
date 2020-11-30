@@ -2,21 +2,40 @@ package com.example.job_wargame2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class Entrance_window extends AppCompatActivity {
 
-    private TextView main_war_game_TXT;
-    private Button activityWinner_BTN_startOver;
-    private Button activityWinner_BTN_exit;
+    private Button entrance_BTN_startNewGame;
+    private Button entrance_BTN_scoreTable;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance_window);
+        findViews();
+        startNewGame();
 
+    }
+
+    private void startNewGame() {
+        entrance_BTN_startNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Entrance_window.this, MainActivity.class);
+                startActivity(myIntent);
+                finish();
+            }
+        });
+    }
+
+    private void findViews() {
+        entrance_BTN_scoreTable = findViewById(R.id.entrance_BTN_scoreTable);
+        entrance_BTN_startNewGame = findViewById(R.id.entrance_BTN_startNewGame);
     }
 }

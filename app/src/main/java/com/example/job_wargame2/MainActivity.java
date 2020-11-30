@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private WarGame game;
     private boolean isClicked = false;//flag that will help to control the clicks on button
     final Handler handler = new Handler();
-    private ProgressBar pgsBar;
+    private ProgressBar main_BAR_prgsBar;
+
 
     private Runnable runnable = new Runnable() {
         public void run() {
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game=new WarGame();
-        pgsBar = (ProgressBar) findViewById(R.id.pBar);
         findviews();
         if(!isClicked){//To lock the press on the play button
             main_IMGBTN_play.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playGame(WarGame game) {
         if(game.getRound() <= WarGame.MAX_ROUNDS) {
-            pgsBar.setProgress(game.getRound());
+            main_BAR_prgsBar.setProgress(game.getRound());
             nextRound();
         }
         else
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         main_IMGBTN_play = findViewById(R.id.main_IMGBTN_play);
         main_PNG_leftCard = findViewById(R.id.main_PNG_leftCard);
         main_PNG_rightCard = findViewById(R.id.main_PNG_rightCard);
+        main_BAR_prgsBar = (ProgressBar) findViewById(R.id.main_BAR_prgsBar);
     }
 
     @Override

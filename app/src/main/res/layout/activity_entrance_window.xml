@@ -42,7 +42,7 @@
 
 
         <Button
-            android:id="@+id/main_new_game_BTN"
+            android:id="@+id/entrance_BTN_startNewGame"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
@@ -55,7 +55,7 @@
             ></Button>
 
         <Button
-            android:id="@+id/main_score_table_BTN"
+            android:id="@+id/entrance_BTN_scoreTable"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
