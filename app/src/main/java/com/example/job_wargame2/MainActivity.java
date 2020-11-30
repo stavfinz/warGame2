@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private WarGame game;
     private boolean isClicked = false;//flag that will help to control the clicks on button
     final Handler handler = new Handler();
+    private ProgressBar pgsBar;
+
     private Runnable runnable = new Runnable() {
         public void run() {
             if(isClicked){
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game=new WarGame();
+        pgsBar = (ProgressBar) findViewById(R.id.pBar);
         findviews();
         if(!isClicked){//To lock the press on the play button
             main_IMGBTN_play.setOnClickListener(new View.OnClickListener() {
@@ -60,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
      * @param game
      */
     private void playGame(WarGame game) {
-        if(game.getRound() <= WarGame.MAX_ROUNDS)
+        if(game.getRound() <= WarGame.MAX_ROUNDS) {
+            pgsBar.setProgress(game.getRound());
             nextRound();
+        }
         else
             presentWinner();
     }
