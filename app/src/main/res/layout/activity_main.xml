@@ -23,8 +23,9 @@
         android:progress="0" />
 
     <LinearLayout
+        android:id="@+id/main_LNR_centerLinear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -85,7 +86,10 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="100dp"
                 android:background="@color/cardview_shadow_end_color"
-                android:src="@drawable/play"></ImageButton>
+                android:src="@drawable/play">
+
+            </ImageButton>
+
 
 
             <LinearLayout
@@ -136,6 +140,18 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
+    <Button
+        android:id="@+id/main_BTN_returnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_LNR_centerLinear"
+        android:layout_centerHorizontal="true"
+        android:text="back to menu">
+
+    </Button>
+
+
 
 </RelativeLayout>

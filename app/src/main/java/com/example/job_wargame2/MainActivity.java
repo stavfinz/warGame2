@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isClicked = false;//flag that will help to control the clicks on button
     final Handler handler = new Handler();
     private ProgressBar main_BAR_prgsBar;
+    private Button main_BTN_returnToMenu;
 
 
     private Runnable runnable = new Runnable() {
@@ -46,21 +45,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         game=new WarGame();
         findviews();
-        if(!isClicked){//To lock the press on the play button
-            main_IMGBTN_play.setOnClickListener(new View.OnClickListener() {
+        main_IMGBTN_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main_IMGBTN_play.setEnabled(false);
+                isClicked = true;
+                main_BTN_returnToMenu.setEnabled(false);
+                playGame(game);
+                startGame();
+            }
+        });
+        if(!isClicked){
+            main_BTN_returnToMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO
-                    isClicked=true;
-                    playGame(game);
-                    startGame();
+                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
+                    startActivity(myIntent);
+                    finish();
                 }
             });
         }
+
     }
 
     /**
-     * Playing one round in the game or presenting the winner
+     * Playing one round in the game OR presenting the winner
      * @param game
      */
     private void playGame(WarGame game) {
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         main_PNG_leftCard = findViewById(R.id.main_PNG_leftCard);
         main_PNG_rightCard = findViewById(R.id.main_PNG_rightCard);
         main_BAR_prgsBar = (ProgressBar) findViewById(R.id.main_BAR_prgsBar);
+        main_BTN_returnToMenu = findViewById(R.id.main_BTN_returnToMenu);
     }
 
     @Override
