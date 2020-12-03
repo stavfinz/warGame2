@@ -19,7 +19,7 @@
         android:indeterminate="false"
         android:max="10"
         android:outlineAmbientShadowColor="@color/white"
-        android:maxWidth="@dimen/cardview_default_elevation"
+        android:maxWidth="60dp"
         android:progress="0" />
 
     <LinearLayout
@@ -45,13 +45,21 @@
                     android:id="@+id/main_LBL_scorePlayer1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="90dp"
+                    android:paddingTop="100dp"
                     android:paddingBottom="10dp"
                     android:text="Score"
                     android:textAlignment="center"
-                    android:textColor="#d5e29f"
                     android:textSize="30dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:shadowColor="@color/white"
+
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:textColor="#CC0000"
+                    android:fontFamily="casual"
+
+                    />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -79,16 +87,24 @@
             </LinearLayout>
 
 
-            <ImageButton
+            <Button
                 android:id="@+id/main_IMGBTN_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="100dp"
-                android:background="@color/cardview_shadow_end_color"
-                android:src="@drawable/play">
+                android:layout_marginBottom="30dp"
 
-            </ImageButton>
+                android:text="play"
+                android:shadowColor="@color/black"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="20"
+                android:textSize="50dp"
+                android:textColor="#558EE2"
+                android:fontFamily="casual"
+                android:textStyle="bold">
+
+            </Button>
 
 
 
@@ -121,13 +137,20 @@
                     android:id="@+id/main_LBL_scorePlayer2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="90dp"
+                    android:paddingTop="100dp"
                     android:paddingBottom="10dp"
                     android:text="Score"
                     android:textAlignment="center"
-                    android:textColor="#d5e29f"
                     android:textSize="30dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:shadowColor="@color/white"
+
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:textColor="#CC0000"
+                    android:fontFamily="casual"
+                    />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -142,16 +165,43 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <Button
         android:id="@+id/main_BTN_returnToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/main_LNR_centerLinear"
-        android:layout_centerHorizontal="true"
-        android:text="back to menu">
-
-    </Button>
+        android:layout_gravity="right"
+        android:layout_marginLeft="2dp"
 
 
+        android:fontFamily="casual"
+        android:shadowColor="#FF0000"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="4"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        ></Button>
+
+    <Button
+        android:id="@+id/main_BTN_scoresTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="550dp"
+        android:layout_marginTop="330dp"
+        android:text="Top ten table"
+        android:shadowColor="#FF0000"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="4"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        ></Button>
 
 </RelativeLayout>

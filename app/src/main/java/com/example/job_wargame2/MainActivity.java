@@ -21,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageView main_PNG_rightCard;
     private TextView main_LBL_scorePlayer1;
     private TextView main_LBL_scorePlayer2;
-    private ImageButton main_IMGBTN_play;
+    private Button main_IMGBTN_play;
+    private Button main_BTN_scoresTable;
     private WarGame game;
     private boolean isClicked = false;//flag that will help to control the clicks on button
     final Handler handler = new Handler();
-    private ProgressBar main_BAR_prgsBar;
+    private ProgressBar main_BAR_pBar;
     private Button main_BTN_returnToMenu;
 
 
@@ -50,13 +51,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 main_IMGBTN_play.setEnabled(false);
                 isClicked = true;
+                main_IMGBTN_play.setVisibility(View.GONE);
                 main_BTN_returnToMenu.setEnabled(false);
+                main_BTN_scoresTable.setEnabled(false);
                 playGame(game);
                 startGame();
             }
         });
         if(!isClicked){
             main_BTN_returnToMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
+                    startActivity(myIntent);
+                    finish();
+                }
+            });
+        }
+        if(!isClicked){
+            main_BTN_scoresTable.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
@@ -74,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playGame(WarGame game) {
         if(game.getRound() <= WarGame.MAX_ROUNDS) {
-            main_BAR_prgsBar.setProgress(game.getRound());
+            main_BAR_pBar.setProgress(game.getRound());
             nextRound();
         }
         else
@@ -133,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
         main_IMGBTN_play = findViewById(R.id.main_IMGBTN_play);
         main_PNG_leftCard = findViewById(R.id.main_PNG_leftCard);
         main_PNG_rightCard = findViewById(R.id.main_PNG_rightCard);
-        main_BAR_prgsBar = (ProgressBar) findViewById(R.id.main_BAR_prgsBar);
+        main_BAR_pBar = (ProgressBar) findViewById(R.id.main_BAR_prgsBar);
         main_BTN_returnToMenu = findViewById(R.id.main_BTN_returnToMenu);
+        main_BTN_scoresTable=findViewById(R.id.main_BTN_scoresTable);
     }
 
     @Override
