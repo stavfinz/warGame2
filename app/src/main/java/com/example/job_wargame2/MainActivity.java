@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import static com.example.job_wargame2.Constants.SP_FILE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         game=new WarGame();
         findviews();
+        initViews();
+
+
+    }
+
+    private void initViews() {
         main_IMGBTN_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,13 +81,12 @@ public class MainActivity extends AppCompatActivity {
             main_BTN_scoresTable.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
+                    Intent myIntent = new Intent(MainActivity.this, TopTen.class);
                     startActivity(myIntent);
                     finish();
                 }
             });
         }
-
     }
 
     /**
@@ -95,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void presentWinner() {
+        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("whoWon", whoWon());
+        editor.apply();
+
+        String winner = prefs.getString("whoWon","No name defined");
+        Log.d("pttt","winner=" +winner);
+
         Intent myIntent = new Intent(MainActivity.this, WinnerActivity.class);
         myIntent.putExtra(WinnerActivity.WINNER, whoWon());
         startActivity(myIntent);

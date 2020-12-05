@@ -20,7 +20,19 @@ public class Entrance_window extends AppCompatActivity {
         setContentView(R.layout.activity_entrance_window);
         findViews();
         startNewGame();
+        topTenWindow();
 
+    }
+
+    private void topTenWindow() {
+        entrance_BTN_scoreTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Entrance_window.this, TopTen.class);
+                startActivity(myIntent);
+                finish();
+            }
+        });
     }
 
     private void startNewGame() {
