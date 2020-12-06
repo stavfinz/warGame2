@@ -10,10 +10,11 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import static com.example.job_wargame2.Constants.SP_FILE;
 
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_LBL_scorePlayer2;
     private Button main_IMGBTN_play;
     private Button main_BTN_scoresTable;
-    private WarGame game;
     private boolean isClicked = false;//flag that will help to control the clicks on button
     final Handler handler = new Handler();
     private ProgressBar main_BAR_pBar;
     private Button main_BTN_returnToMenu;
+    private WarGame game;
+    private TopTen topTenPlayers;
 
+    private Gson gson = new Gson();
 
     private Runnable runnable = new Runnable() {
         public void run() {
@@ -48,10 +51,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game=new WarGame();
+        topTenPlayers = getCurrnetTopTen();
         findviews();
         initViews();
 
 
+    }
+
+    /**
+     * Return the current TOP TEN of app user.
+     * If the app first used ,will return an EMPTY TOP TEN.
+     * @return
+     */
+    private TopTen getCurrnetTopTen() {
+        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
+        String topTen = prefs.getString("TopTen","empty");
+        if(topTen.compareTo("empty")==0)
+            return new TopTen();
+        else
+            return gson.fromJson(topTen,TopTen.class);
     }
 
     private void initViews() {
@@ -81,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             main_BTN_scoresTable.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent myIntent = new Intent(MainActivity.this, TopTen.class);
+                    Intent myIntent = new Intent(MainActivity.this, scoreTable.class);
                     startActivity(myIntent);
                     finish();
                 }
@@ -103,27 +121,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void presentWinner() {
+        Intent myIntent = new Intent(MainActivity.this, WinnerActivity.class);
         SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("whoWon", whoWon());
+        if(whoWon() == null){
+            Log.d("ptttHelp","in who won NULL\n\n");
+            editor.putString("whoWon", "its a tie");
+            myIntent.putExtra(WinnerActivity.WINNER, "its a tie");
+        }else{
+            if(topTenPlayers.addPlayer(whoWon())){
+                Log.d("ptttHelp","Succesfulyy added");
+                editor.putString("TopTen",gson.toJson(topTenPlayers));
+                editor.putString("whoWon", whoWon().getName());
+            }
+            myIntent.putExtra(WinnerActivity.WINNER, whoWon().getName());
+        }
         editor.apply();
 
         String winner = prefs.getString("whoWon","No name defined");
+        topTenPlayers = getCurrnetTopTen();
         Log.d("pttt","winner=" +winner);
+        Log.d("pttt",topTenPlayers.toString());
 
-        Intent myIntent = new Intent(MainActivity.this, WinnerActivity.class);
-        myIntent.putExtra(WinnerActivity.WINNER, whoWon());
         startActivity(myIntent);
         finish();
     }
 
-    private String whoWon() {
+    private Player whoWon() {
+        Player winner;
         if(game.getScorePlayer1()==game.getScorePlayer2())
-            return "Its a TIE!";
-        else if (game.getScorePlayer1()<game.getScorePlayer2())
-            return "BATMAN";
-        else
-            return "SPIDER MAN";
+            return null;
+        else if (game.getScorePlayer1()<game.getScorePlayer2()) {
+            winner = new Player("BATMAN",game.getScorePlayer2());
+        }
+        else{
+            winner = new Player("SPIDERMAN",game.getScorePlayer1());
+        }
+        return winner;
+
     }
 
     private void nextRound() {

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".TopTen"
+            android:name=".scoreTable"
             android:screenOrientation="landscape">
 
         </activity>

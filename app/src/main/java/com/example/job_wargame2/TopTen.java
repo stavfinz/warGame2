@@ -1,33 +1,75 @@
 package com.example.job_wargame2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
-import static com.example.job_wargame2.Constants.SP_FILE;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
-public class TopTen extends AppCompatActivity {
 
-    private TextView topTen_LBL_winner;
+
+public class TopTen {
+
+    private ArrayList<Player> topPlayers;
+    public static final int SIZE = 10;
+
+    public TopTen(){
+        this.topPlayers = new ArrayList<Player>();
+    }
+
+    public TopTen (ArrayList<Player> topPlayers){
+        this.topPlayers = topPlayers;
+    }
+
+    public ArrayList<Player> getTopPlayers() {
+        return topPlayers;
+    }
+
+    public void setTopPlayers(ArrayList<Player> topPlayers) {
+        this.topPlayers = topPlayers;
+    }
+
+    /**
+     * Return TRUE if player added successfully to TOP TEN, else return FALSE.
+     * Player's score must be greater or equal then the minimum score of top ten players.
+     * @param player
+     * @return
+     */
+    public boolean addPlayer(Player player){
+        if(this.topPlayers.isEmpty()){
+            Log.d("ptttHelp","list is empty\n\n");
+            this.topPlayers.add(player);
+            return true;
+        }
+        if(playerMayEnterTopTen(player)){
+            Log.d("ptttHelp","player may enter\n\n");
+            if(this.topPlayers.size() == SIZE)
+                this.topPlayers.remove(0);
+            this.topPlayers.add(player);
+            this.topPlayers.sort(new Comparator<Player>() {
+                @Override
+                public int compare(Player o1, Player o2) {
+                    return o1.getScore()-o2.getScore();
+                }
+            });
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean playerMayEnterTopTen(Player player) {
+        if(this.topPlayers.size()!= SIZE)
+            return true;
+        else if(player.getScore()>=this.topPlayers.get(0).getScore())
+            return true;
+        return false;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_ten);
-        findViews();
-        initViews();
-    }
-
-    private void initViews() {
-        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
-        String winner = prefs.getString("whoWon","No name defined");
-        Log.d("pttt","winner=" +winner);
-        topTen_LBL_winner.setText(winner);
-    }
-
-    private void findViews() {
-        topTen_LBL_winner = findViewById(R.id.topTen_LBL_winner);
+    public String toString() {
+        return "TopTen{" +
+                "topPlayers=" + topPlayers +
+                '}';
     }
 }

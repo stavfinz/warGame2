@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class Entrance_window extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class Entrance_window extends AppCompatActivity {
         entrance_BTN_scoreTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(Entrance_window.this, TopTen.class);
+                Intent myIntent = new Intent(Entrance_window.this, scoreTable.class);
                 startActivity(myIntent);
                 finish();
             }
