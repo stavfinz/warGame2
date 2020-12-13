@@ -19,7 +19,8 @@ import com.google.gson.Gson;
 import static com.example.job_wargame2.Constants.SP_FILE;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String LONGITUDE = "LONGTITUDE";
+    public static final String LATITUDE = "LATITUDE";
     public static final int DELAY = 1000;
     private ImageView main_PNG_leftCard;
     private ImageView main_PNG_rightCard;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game=new WarGame();
+        Log.d("pttt","STAV "+getIntent().getDoubleExtra(LATITUDE,-1)+", "+getIntent().getDoubleExtra(LONGITUDE,-1));
+        game.setLocationPlayers(getIntent().getDoubleExtra(LATITUDE,-1),getIntent().getDoubleExtra(LONGITUDE,-1));
         topTenPlayers = getCurrnetTopTen();
         findviews();
         initViews();
@@ -89,11 +92,10 @@ public class MainActivity extends AppCompatActivity {
             main_BTN_returnToMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
-                    startActivity(myIntent);
+//                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
+//                    startActivity(myIntent);
                     finish();
-                }
-            });
+                }          });
         }
         if(!isClicked){
             main_BTN_scoresTable.setOnClickListener(new View.OnClickListener() {
@@ -152,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
         if(game.getScorePlayer1()==game.getScorePlayer2())
             return null;
         else if (game.getScorePlayer1()<game.getScorePlayer2()) {
-            winner = new Player("BATMAN",game.getScorePlayer2());
+            winner = new Player("BATMAN",game.getScorePlayer2(),game.getLatitudePlayer2(),game.getLongitudePlayer2());
         }
         else{
-            winner = new Player("SPIDERMAN",game.getScorePlayer1());
+            winner = new Player("SPIDERMAN",game.getScorePlayer1(),game.getLatitudePlayer1(),game.getLongitudePlayer1());
         }
         return winner;
 

@@ -12,9 +12,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textSize="50dp"
+        android:layout_alignParentTop="true"
+        android:textSize="30dp"
         android:text="winner"
         android:textColor="@color/black">
 
     </TextView>
+    <fragment
+        android:id="@+id/mapAPI"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp">
+
+
+
+    </fragment>
+
 </RelativeLayout>

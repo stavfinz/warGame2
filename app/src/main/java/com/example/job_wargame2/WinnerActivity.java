@@ -32,6 +32,8 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(WinnerActivity.this, MainActivity.class);
+                myIntent.putExtra(MainActivity.LATITUDE,Entrance_window.latitude);
+                myIntent.putExtra(MainActivity.LONGITUDE,Entrance_window.longitude);
                 startActivity(myIntent);
                 finish();
             }

@@ -1,5 +1,7 @@
 package com.example.job_wargame2;
 
+import android.util.Log;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -67,6 +69,30 @@ public class WarGame {
 
     public void setScorePlayer2() {
         this.players[1].setScore();
+    }
+
+    public double getLatitudePlayer1(){
+        return this.players[0].getLatitude();
+    }
+    public double getLongitudePlayer1(){
+        return this.players[0].getLongitude();
+    }
+
+    public double getLatitudePlayer2(){
+        return this.players[1].getLatitude();
+    }
+    public double getLongitudePlayer2(){
+        return this.players[1].getLongitude();
+    }
+
+    public void setLocationPlayers(double latitude,double longitude){
+        Log.d("pttt","STAV AND MOURY "+latitude+", "+longitude);
+
+        this.players[0].setLatitude(latitude);
+        this.players[0].setLongitude(longitude);
+        this.players[1].setLatitude(latitude);
+        this.players[1].setLongitude(longitude);
+        Log.d("pttt","STEWIII "+this.players[0].getLatitude()+", "+this.players[0].getLongitude());
     }
 
     public void nextRound() {

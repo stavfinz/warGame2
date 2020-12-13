@@ -8,79 +8,17 @@
     android:layout_gravity="center"
     >
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/main_topTen_1"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
+        <ListView
+            android:id="@+id/fragment_List_view_top10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
 
-        <Button
-            android:id="@+id/main_topTen_2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
+        </ListView>
 
-        <Button
-            android:id="@+id/main_topTen_3"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_4"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_5"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_6"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_7"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_8"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-
-        <Button
-            android:id="@+id/main_topTen_9"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-        <Button
-            android:id="@+id/main_topTen_10"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Button"
-            android:textSize="8dp"/>
-    </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>

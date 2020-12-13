@@ -5,14 +5,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Fragment_List extends Fragment {
 
-    private Button[] topTenButtons = new Button[10];
-    private TopTen topTenPlayers;
+
+    private ArrayList<Player> topTenPlayers;
+    private ListView fragment_List_view_top10;
 
     private CallBack_Top callBack_top;
 
@@ -20,124 +30,52 @@ public class Fragment_List extends Fragment {
         this.callBack_top = _callBack_top;
     }
 
-    private void findviews(View view) {
-        topTenButtons[0]=view.findViewById(R.id.main_topTen_1);
-        topTenButtons[1]=view.findViewById(R.id.main_topTen_2);
-        topTenButtons[2]=view.findViewById(R.id.main_topTen_3);
-        topTenButtons[3]=view.findViewById(R.id.main_topTen_4);
-        topTenButtons[4]=view.findViewById(R.id.main_topTen_5);
-        topTenButtons[5]=view.findViewById(R.id.main_topTen_6);
-        topTenButtons[6]=view.findViewById(R.id.main_topTen_7);
-        topTenButtons[7]=view.findViewById(R.id.main_topTen_8);
-        topTenButtons[8]=view.findViewById(R.id.main_topTen_9);
-        topTenButtons[9]=view.findViewById(R.id.main_topTen_10);
+    private void findViews(View view) {
+        fragment_List_view_top10=view.findViewById(R.id.fragment_List_view_top10);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_list,container,false);
-        findviews(view);
+        findViews(view);
         initViews(view);
         return view;
     }
 
-    private void initViews(View v) {
-        topTenButtons[0].setOnClickListener(new View.OnClickListener() {
+
+    public void initViews(View v) {
+
+        List<Map<String,String>> data=new ArrayList<>();
+        int topTenSize=topTenPlayers.size()-1;
+        for (int i = topTenSize; i >=0 ; i--) {
+            Map<String,String> record=new HashMap<>();
+            record.put("name",topTenPlayers.get(i).getName());
+            if(topTenPlayers.get(i).getScore()==-1){
+                record.put("score","");
+            }
+            else {
+                record.put("score", topTenPlayers.get(i).getScore()+"");
+            }
+            data.add(record);
+        }
+        SimpleAdapter adapter= new SimpleAdapter(v.getContext(),data,
+                android.R.layout.simple_list_item_2,
+                new String[]{"name", "score"},
+                new int[]{android.R.id.text1,android.R.id.text2});
+        fragment_List_view_top10.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(0).getName());
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (callBack_top!=null){
+                    callBack_top.displayLocation(topTenPlayers.get(topTenSize-position).getLatitude(),
+                            topTenPlayers.get(topTenSize-position).getLongitude());
                 }
             }
         });
-        topTenButtons[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(1).getName());
-                }
-            }
-        });
-        topTenButtons[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(2).getName());
-                }
-            }
-        });
-        topTenButtons[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(3).getName());
-                }
-            }
-        });
-        topTenButtons[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(4).getName());
-                }
-            }
-        });
-        topTenButtons[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(5).getName());
-                }
-            }
-        });
-        topTenButtons[6].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(6).getName());
-                }
-            }
-        });
-        topTenButtons[7].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(7).getName());
-                }
-            }
-        });
-        topTenButtons[8].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(8).getName());
-                }
-            }
-        });
-        topTenButtons[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack_top != null) {
-                    callBack_top.displayLocation(topTenPlayers.getTopPlayers().get(9).getName());
-                }
-            }
-        });
+        fragment_List_view_top10.setAdapter(adapter);
     }
 
-    public void setNamesToButtons() {
-          topTenButtons[0].setText(topTenPlayers.getTopPlayers().get(0).toString());
-          topTenButtons[1].setText(topTenPlayers.getTopPlayers().get(1).toString());
-        topTenButtons[2].setText(topTenPlayers.getTopPlayers().get(2).toString());
-        topTenButtons[3].setText(topTenPlayers.getTopPlayers().get(3).toString());
-        topTenButtons[4].setText(topTenPlayers.getTopPlayers().get(4).toString());
-        topTenButtons[5].setText(topTenPlayers.getTopPlayers().get(5).toString());
-        topTenButtons[6].setText(topTenPlayers.getTopPlayers().get(6).toString());
-        topTenButtons[7].setText(topTenPlayers.getTopPlayers().get(7).toString());
-        topTenButtons[8].setText(topTenPlayers.getTopPlayers().get(8).toString());
-        topTenButtons[9].setText(topTenPlayers.getTopPlayers().get(9).toString());
-    }
 
     public void setTopTenPlayers(TopTen topTen){
-        topTenPlayers = topTen;
+        topTenPlayers = topTen.getTopPlayers();
     }
 }
