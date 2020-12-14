@@ -92,10 +92,9 @@ public class MainActivity extends AppCompatActivity {
             main_BTN_returnToMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent myIntent = new Intent(MainActivity.this, Entrance_window.class);
-//                    startActivity(myIntent);
                     finish();
-                }          });
+                }
+            });
         }
         if(!isClicked){
             main_BTN_scoresTable.setOnClickListener(new View.OnClickListener() {

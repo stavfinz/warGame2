@@ -46,8 +46,8 @@ public class Fragment_List extends Fragment {
     public void initViews(View v) {
 
         List<Map<String,String>> data=new ArrayList<>();
-        int topTenSize=topTenPlayers.size()-1;
-        for (int i = topTenSize; i >=0 ; i--) {
+        int topTenSize=topTenPlayers.size();
+        for (int i = 0; i < topTenPlayers.size(); i++) {
             Map<String,String> record=new HashMap<>();
             record.put("name",topTenPlayers.get(i).getName());
             if(topTenPlayers.get(i).getScore()==-1){
@@ -66,8 +66,8 @@ public class Fragment_List extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (callBack_top!=null){
-                    callBack_top.displayLocation(topTenPlayers.get(topTenSize-position).getLatitude(),
-                            topTenPlayers.get(topTenSize-position).getLongitude());
+                    callBack_top.displayLocation(topTenPlayers.get(position).getLatitude(),
+                            topTenPlayers.get(position).getLongitude());
                 }
             }
         });

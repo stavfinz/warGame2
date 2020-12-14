@@ -12,8 +12,6 @@ public class WarGame {
 
     private Card deckOfCards[][]= new Card[NUM_OF_PLAYERS][CARDS_FOR_PLAYERS];
     private Player [] players = new Player[NUM_OF_PLAYERS];
-//    private int scorePlayer1=0;
-//    private int scorePlayer2=0;
     private int round;
 
     /**

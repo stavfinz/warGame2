@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,24 +22,28 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Fragment_Map extends Fragment implements OnMapReadyCallback {
     private TextView map_LBL_name;
     private GoogleMap mapAPI;
-    public SupportMapFragment mapFragment;
+    public MapView mMapView;
     private double latitude;
     private double longitude;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_map,container,false);
-        findviews(view);
+        findViews(view);
         initViews();
         return view;
     }
 
-    private void findviews(View view) {
+    private void findViews(View view) {
         map_LBL_name= view.findViewById(R.id.map_LBL_name);
-
+        mMapView = view.findViewById(R.id.mapView);
     }
 
     private void initViews() {
-
+        if(mMapView != null){
+            mMapView.onCreate(null);
+            mMapView.onResume();
+            mMapView.getMapAsync(this);
+        }
 
     }
     public void showLocation(double latitude,double longitude){
@@ -45,17 +51,40 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback {
         this.latitude = latitude;
         this.longitude = longitude;
         Log.d("pttt", (String) map_LBL_name.getText());
+        LatLng location = new LatLng(latitude, longitude);
+        mapAPI.addMarker(new MarkerOptions().position(location).title("CurrentLocation"));
+        mapAPI.moveCamera(CameraUpdateFactory.newLatLng(location));
 
 
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
         mapAPI = googleMap;
-        LatLng currentLocation = new LatLng(latitude,longitude);
-        Log.d("pttt","latitude : "+latitude+" logitude :"+longitude);
-        mapAPI.addMarker(new MarkerOptions().position(currentLocation).title("CurrentLocation"));
-        mapAPI.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 }

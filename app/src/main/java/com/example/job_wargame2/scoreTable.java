@@ -28,7 +28,6 @@ public class scoreTable extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.scoreTable_LAY_topTen,fragment_list).commit();
 
         fragment_map = new Fragment_Map();
-        fragment_map.mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapAPI);
         getSupportFragmentManager().beginTransaction().add(R.id.scoreTable_LAY_location,fragment_map).commit();
         findViews();
         initViews();
@@ -44,9 +43,8 @@ public class scoreTable extends AppCompatActivity {
             topTen = new TopTen();
         else
             topTen = gson.fromJson(top,TopTen.class);
-        //Log.d("pttt",topTen.toString());
         fragment_list.setTopTenPlayers(topTen);
-        //fragment_list.setNamesToButtons();
+
 
     }
 
