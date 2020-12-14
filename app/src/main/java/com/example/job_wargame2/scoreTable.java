@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.gson.Gson;
 
@@ -16,6 +18,7 @@ public class scoreTable extends AppCompatActivity {
 
     private Fragment_List fragment_list;
     private Fragment_Map fragment_map;
+    private ImageView scoreTable_PNG_background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,10 @@ public class scoreTable extends AppCompatActivity {
         fragment_map = new Fragment_Map();
         getSupportFragmentManager().beginTransaction().add(R.id.scoreTable_LAY_location,fragment_map).commit();
         findViews();
+
         initViews();
+        Glide.with(this).load("https://image.freepik.com/free-vector/abstract-metallic-red-black-background-with-contrast-stripes_71775-864.jpg")
+                .into(this.scoreTable_PNG_background);
     }
 
     private void initViews() {
@@ -49,7 +55,7 @@ public class scoreTable extends AppCompatActivity {
     }
 
     private void findViews() {
-
+        scoreTable_PNG_background=findViewById(R.id.scoreTable_PNG_background);
     }
 
     private CallBack_Top callBack_top = new CallBack_Top() {

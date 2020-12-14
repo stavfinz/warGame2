@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import static com.example.job_wargame2.Constants.SP_FILE;
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private Button main_BTN_returnToMenu;
     private WarGame game;
     private TopTen topTenPlayers;
+    private ImageView main_PNG_background;
+    private ImageView main_PNG_player1;
+    public ImageView main_PNG_player2;
 
     private Gson gson = new Gson();
 
@@ -56,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         game.setLocationPlayers(getIntent().getDoubleExtra(LATITUDE,-1),getIntent().getDoubleExtra(LONGITUDE,-1));
         topTenPlayers = getCurrnetTopTen();
         findviews();
+        Glide.with(this).load("https://image.freepik.com/free-vector/black-red-metal-background_71775-356.jpg").into(this.main_PNG_background);
+        Glide.with(this).load("https://www.flaticon.com/premium-icon/icons/svg/1090/1090806.svg").into(this.main_PNG_player1);
+        Glide.with(this).load("https://www.flaticon.com/premium-icon/icons/svg/805/805385.svg").into(this.main_PNG_player2);
         initViews();
 
 
@@ -179,7 +187,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void playSound(int id ) {
+        MediaPlayer mp= MediaPlayer.create(this,id);
+        mp.start();
+
+    }
     private void setCard(WarGame game) {
+        playSound(R.raw.swipe_sound);
         int drawableResourceId1, drawableResourceId2;
         drawableResourceId1 = this.getResources().getIdentifier(
                 "poker_card_" + game.getDeckOfCards()[0][game.getRound()].getType() +
@@ -189,8 +203,9 @@ public class MainActivity extends AppCompatActivity {
                         "_" + game.getDeckOfCards()[1][game.getRound()].getValue(), "drawable", this.getPackageName());
         main_PNG_leftCard.setImageResource(drawableResourceId1);
         main_PNG_rightCard.setImageResource(drawableResourceId2);
-
     }
+
+
 
     private void findviews() {
         main_LBL_scorePlayer1 = findViewById(R.id.main_LBL_scorePlayer1);
@@ -201,6 +216,9 @@ public class MainActivity extends AppCompatActivity {
         main_BAR_pBar = (ProgressBar) findViewById(R.id.main_BAR_prgsBar);
         main_BTN_returnToMenu = findViewById(R.id.main_BTN_returnToMenu);
         main_BTN_scoresTable=findViewById(R.id.main_BTN_scoresTable);
+        main_PNG_background=findViewById(R.id.main_PNG_background);
+        main_PNG_player1=findViewById(R.id.main_PNG_player1);
+        main_PNG_player2=findViewById(R.id.main_PNG_player2);
     }
 
     @Override

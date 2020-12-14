@@ -6,9 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WinnerActivity"
-    android:background="@drawable/win">
-
-
+>
+    <ImageView
+        android:id="@+id/winner_PNG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"></ImageView>
 
     <TextView
         android:id="@+id/activityWinner_LBL_winner"

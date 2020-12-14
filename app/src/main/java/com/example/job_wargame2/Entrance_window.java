@@ -18,6 +18,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class Entrance_window extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class Entrance_window extends AppCompatActivity {
     public static double longitude ;
     private LocationManager locationManager;
     private Location location;
+    private ImageView entrance_PNG_background;
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             latitude = location.getLongitude();
@@ -40,6 +44,10 @@ public class Entrance_window extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance_window);
         findViews();
+        Glide.
+                with(this).
+                load("https://image.freepik.com/free-vector/black-red-metal-background-vector-metallic-banner-abstract-technology-background_71775-443.jpg")
+                .into(this.entrance_PNG_background);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -114,6 +122,7 @@ public class Entrance_window extends AppCompatActivity {
     private void findViews() {
         entrance_BTN_scoreTable = findViewById(R.id.entrance_BTN_scoreTable);
         entrance_BTN_startNewGame = findViewById(R.id.entrance_BTN_startNewGame);
+        entrance_PNG_background=findViewById(R.id.entrance_PNG_background);
     }
 
     @Override

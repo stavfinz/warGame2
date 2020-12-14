@@ -54,8 +54,6 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback {
         LatLng location = new LatLng(latitude, longitude);
         mapAPI.addMarker(new MarkerOptions().position(location).title("CurrentLocation"));
         mapAPI.moveCamera(CameraUpdateFactory.newLatLng(location));
-
-
     }
 
     @Override

@@ -5,8 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/marvel">
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/main_PNG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"></ImageView>
 
     <ProgressBar
         android:id="@+id/main_BAR_prgsBar"
@@ -62,10 +66,11 @@
                     />
 
                 <ImageView
+                    android:id="@+id/main_PNG_player1"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/spiderman" />
+                    />
 
 
             </LinearLayout>
@@ -153,11 +158,10 @@
                     />
 
                 <ImageView
+                    android:id="@+id/main_PNG_player2"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:layout_gravity="right"
-                    app:srcCompat="@drawable/batman"
-
                     />
 
             </LinearLayout>

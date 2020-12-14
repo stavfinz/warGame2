@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/entrance"
     tools:context=".Entrance_window">
-
+    <ImageView
+        android:id="@+id/entrance_PNG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
