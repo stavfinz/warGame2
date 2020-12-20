@@ -1,5 +1,6 @@
 package com.example.job_wargame2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,15 @@ import android.widget.SimpleAdapter;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.job_wargame2.Constants.SP_FILE;
 
 public class Fragment_List extends Fragment {
 
@@ -75,7 +80,15 @@ public class Fragment_List extends Fragment {
     }
 
 
-    public void setTopTenPlayers(TopTen topTen){
+    public void setTopTenPlayers(){
+        TopTen topTen;
+        Gson gson = new Gson();
+        String winner = MySP.getInstance().getString("whoWon","No name defined");
+        String top = MySP.getInstance().getString("TopTen","empty");
+        if(top.compareTo("empty") == 0)
+            topTen = new TopTen();
+        else
+            topTen = gson.fromJson(top,TopTen.class);
         topTenPlayers = topTen.getTopPlayers();
     }
 }

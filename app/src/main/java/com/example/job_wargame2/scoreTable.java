@@ -35,25 +35,13 @@ public class scoreTable extends AppCompatActivity {
         fragment_map = new Fragment_Map();
         getSupportFragmentManager().beginTransaction().add(R.id.scoreTable_LAY_location,fragment_map).commit();
         findViews();
-
         initViews();
         Glide.with(this).load("https://image.freepik.com/free-vector/abstract-metallic-red-black-background-with-contrast-stripes_71775-864.jpg")
                 .into(this.scoreTable_PNG_background);
     }
 
     private void initViews() {
-        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
-        String winner = prefs.getString("whoWon","No name defined");
-        String top = prefs.getString("TopTen","empty");
-        TopTen topTen ;
-        Gson gson = new Gson();
-        if(top.compareTo("empty") == 0)
-            topTen = new TopTen();
-        else
-            topTen = gson.fromJson(top,TopTen.class);
-        fragment_list.setTopTenPlayers(topTen);
-
-
+        fragment_list.setTopTenPlayers();
     }
 
     private void findViews() {

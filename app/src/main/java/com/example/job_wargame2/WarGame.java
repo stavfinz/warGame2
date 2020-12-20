@@ -84,13 +84,11 @@ public class WarGame {
     }
 
     public void setLocationPlayers(double latitude,double longitude){
-        Log.d("pttt","STAV AND MOURY "+latitude+", "+longitude);
 
         this.players[0].setLatitude(latitude);
         this.players[0].setLongitude(longitude);
         this.players[1].setLatitude(latitude);
         this.players[1].setLongitude(longitude);
-        Log.d("pttt","STEWIII "+this.players[0].getLatitude()+", "+this.players[0].getLongitude());
     }
 
     public void nextRound() {

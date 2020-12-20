@@ -20,7 +20,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Fragment_Map extends Fragment implements OnMapReadyCallback {
-    private TextView map_LBL_name;
     private GoogleMap mapAPI;
     public MapView mMapView;
     private double latitude;
@@ -34,7 +33,6 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback {
     }
 
     private void findViews(View view) {
-        map_LBL_name= view.findViewById(R.id.map_LBL_name);
         mMapView = view.findViewById(R.id.mapView);
     }
 
@@ -44,13 +42,10 @@ public class Fragment_Map extends Fragment implements OnMapReadyCallback {
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
-
     }
     public void showLocation(double latitude,double longitude){
-        map_LBL_name.setText("Latitude: "+latitude+" ,Longitude: "+longitude);
         this.latitude = latitude;
         this.longitude = longitude;
-        Log.d("pttt", (String) map_LBL_name.getText());
         LatLng location = new LatLng(latitude, longitude);
         mapAPI.addMarker(new MarkerOptions().position(location).title("CurrentLocation"));
         mapAPI.moveCamera(CameraUpdateFactory.newLatLng(location));

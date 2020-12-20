@@ -14,7 +14,7 @@ public class Player {
         this.latitude = 0;
     }
 
-    public Player(String name,int score,double latitude,double longitude){   //TODO add location
+    public Player(String name,int score,double latitude,double longitude){
         this.name = name;
         this.score = score;
         this.longitude = longitude;

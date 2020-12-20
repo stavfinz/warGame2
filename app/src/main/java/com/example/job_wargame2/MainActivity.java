@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TopTen topTenPlayers;
     private ImageView main_PNG_background;
     private ImageView main_PNG_player1;
-    public ImageView main_PNG_player2;
+    private ImageView main_PNG_player2;
 
     private Gson gson = new Gson();
 
@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private TopTen getCurrnetTopTen() {
-        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
-        String topTen = prefs.getString("TopTen","empty");
+        //SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
+        String topTen = MySP.getInstance().getString("TopTen","empty");
         if(topTen.compareTo("empty")==0)
             return new TopTen();
         else
@@ -131,25 +131,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void presentWinner() {
         Intent myIntent = new Intent(MainActivity.this, WinnerActivity.class);
-        SharedPreferences prefs = getSharedPreferences(SP_FILE, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
         if(whoWon() == null){
             Log.d("ptttHelp","in who won NULL\n\n");
-            editor.putString("whoWon", "its a tie");
+            MySP.getInstance().putString("whoWon", "its a tie");
             myIntent.putExtra(WinnerActivity.WINNER, "its a tie");
         }else{
             if(topTenPlayers.addPlayer(whoWon())){
                 Log.d("ptttHelp","Succesfulyy added");
-                editor.putString("TopTen",gson.toJson(topTenPlayers));
-                editor.putString("whoWon", whoWon().getName());
+                MySP.getInstance().putString("TopTen",gson.toJson(topTenPlayers));
+                MySP.getInstance().putString("whoWon", whoWon().getName());
             }
             myIntent.putExtra(WinnerActivity.WINNER, whoWon().getName());
         }
-        editor.apply();
 
-        String winner = prefs.getString("whoWon","No name defined");
         topTenPlayers = getCurrnetTopTen();
-        Log.d("pttt","winner=" +winner);
         Log.d("pttt",topTenPlayers.toString());
 
         startActivity(myIntent);
