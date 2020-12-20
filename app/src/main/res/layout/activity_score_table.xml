@@ -11,23 +11,41 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"></ImageView>
 
+    <TextView
+        android:id="@+id/scoreTable_TXV_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="casual"
+        android:shadowColor="#FFE5CC"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="12"
+        android:text="Score Table"
+        android:textAlignment="center"
+        android:textColor="#990000"
+        android:textSize="45dp"
+        android:textStyle="bold" />
+
     <FrameLayout
         android:id="@+id/scoreTable_LAY_topTen"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="30dp"
+        android:textAlignment="center">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/scoreTable_LAY_location"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="400dp"
         android:layout_marginBottom="30dp"
-        android:textAlignment="center"
-        >
-
-    </FrameLayout>
-    <FrameLayout
-        android:id="@+id/scoreTable_LAY_location"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="450dp"
         android:background="@color/white"
         >
 

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,6 +19,7 @@ public class scoreTable extends AppCompatActivity {
 
     private Fragment_List fragment_list;
     private Fragment_Map fragment_map;
+    private TextView scoreTable_TXV_title;
     private ImageView scoreTable_PNG_background;
 
     @Override
@@ -56,6 +58,7 @@ public class scoreTable extends AppCompatActivity {
 
     private void findViews() {
         scoreTable_PNG_background=findViewById(R.id.scoreTable_PNG_background);
+        scoreTable_TXV_title=findViewById(R.id.scoreTable_TXV_title);
     }
 
     private CallBack_Top callBack_top = new CallBack_Top() {
